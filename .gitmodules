@@ -49,3 +49,6 @@
 [submodule "example/tools/underline"]
 	path = example/tools/underline
 	url = https://github.com/editor-js/underline
+[submodule "example/tools/pw-list"]
+	path = example/tools/pw-list
+	url = https://github.com/Prewrite/list
