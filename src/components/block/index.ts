@@ -252,6 +252,7 @@ export default class Block {
     }
 
     const inputs = $.findAllInputs(this.holder);
+
     /**
      * If inputs amount was changed we need to check if input index is bigger then inputs array length
      */
