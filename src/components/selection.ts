@@ -303,7 +303,6 @@ export default class SelectionUtils {
     range.setEnd(element, offset);
 
     selection.removeAllRanges();
-
     selection.addRange(range);
 
     return range.getBoundingClientRect();
