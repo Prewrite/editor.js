@@ -302,13 +302,10 @@ export default class SelectionUtils {
       return element.getBoundingClientRect();
     }
 
-
-
     range.setStart(element, offset);
     range.setEnd(element, offset);
 
     selection.removeAllRanges();
-    console.log(range.startContainer.nodeName === 'BR');
 
     selection.addRange(range);
 

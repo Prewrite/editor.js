@@ -179,7 +179,6 @@ export default class Block {
    * Is fired when DOM mutation has been happened
    */
   private didMutated = _.debounce((): void => {
-    console.log('=====!!!!!!!!!!===> did run mutation observe')
     /**
      * Drop cache
      */
@@ -245,8 +244,6 @@ export default class Block {
    * @returns {HTMLElement[]}
    */
   public get inputs(): HTMLElement[] {
-    console.log('====> getting inputs', this)
-    console.log('=====> actual inputs', $.findAllInputs(this.holder));
     /**
      * Return from cache if existed
      */
@@ -255,7 +252,6 @@ export default class Block {
     }
 
     const inputs = $.findAllInputs(this.holder);
-    console.log('====> REACHED BEYOND', this)
     /**
      * If inputs amount was changed we need to check if input index is bigger then inputs array length
      */
@@ -632,7 +628,6 @@ export default class Block {
    * Update current input index with selection anchor node
    */
   public updateCurrentInput(): void {
-    console.log('====> called update current input')
     /**
      * If activeElement is native input, anchorNode points to its parent.
      * So if it is native input use it instead of anchorNode
@@ -651,7 +646,6 @@ export default class Block {
     /**
      * Observe DOM mutations to update Block inputs
      */
-    console.log('??????? overving this = ', this.holder.firstElementChild)
     this.mutationObserver.observe(
       this.holder.firstElementChild,
       {
@@ -697,7 +691,6 @@ export default class Block {
    * Is fired when text input or contentEditable is focused
    */
   private handleFocus = (): void => {
-    console.log('======> handle focus called')
     /**
      * Drop cache
      */

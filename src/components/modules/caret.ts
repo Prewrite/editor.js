@@ -103,9 +103,7 @@ export default class Caret extends Module {
      *     |adaddad         <-- focus node
      * </div>
      */
-
     if ($.isLineBreakTag(firstNode as HTMLElement) || $.isEmpty(firstNode)) {
-
       const leftSiblings = this.getHigherLevelSiblings(focusNode as HTMLElement, 'left');
       const nothingAtLeft = leftSiblings.every((node) => {
         /**
@@ -249,8 +247,6 @@ export default class Caret extends Module {
     const nodeToSet = $.getDeepestNode(element, position === this.positions.END);
     const contentLength = $.getContentLength(nodeToSet);
 
-    console.log('node to set = ', nodeToSet)
-
     switch (true) {
       case position === this.positions.START:
         offset = 0;
@@ -265,7 +261,6 @@ export default class Caret extends Module {
      * @todo try to fix via Promises or use querySelectorAll to not to use timeout
      */
     _.delay(() => {
-      console.log('called set 1');
       this.set(nodeToSet as HTMLElement, offset);
     }, 20)();
 
@@ -287,18 +282,15 @@ export default class Caret extends Module {
 
     switch (position) {
       case this.positions.START:
-        console.log('called set 2');
         this.set(nodeToSet as HTMLElement, 0);
         break;
 
       case this.positions.END:
-        console.log('called set 3');
         this.set(nodeToSet as HTMLElement, $.getContentLength(nodeToSet));
         break;
 
       default:
         if (offset) {
-          console.log('called set 4');
           this.set(nodeToSet as HTMLElement, offset);
         }
     }
@@ -313,7 +305,6 @@ export default class Caret extends Module {
    * @param {number} offset - offset
    */
   public set(element: HTMLElement, offset = 0): void {
-    console.log('element = ', element.nodeName == 'BR')
     const { top, bottom } = Selection.setCursor(element, offset);
 
     /** If new cursor position is not visible, scroll to it */
@@ -402,7 +393,6 @@ export default class Caret extends Module {
    * @returns {boolean}
    */
   public navigateNext(force = false): boolean {
-    console.log('=====> navigate next called')
     const { BlockManager, Tools } = this.Editor;
     const { currentBlock, nextContentfulBlock } = BlockManager;
     const { nextInput } = currentBlock;
@@ -456,7 +446,6 @@ export default class Caret extends Module {
    * @returns {boolean}
    */
   public navigatePrevious(force = false): boolean {
-    console.log('=====> navigate previous called')
     const { currentBlock, previousContentfulBlock } = this.Editor.BlockManager;
 
     if (!currentBlock) {
@@ -464,8 +453,6 @@ export default class Caret extends Module {
     }
 
     const { previousInput } = currentBlock;
-
-    console.log('=====> navigate previous called')
 
     if (!previousContentfulBlock && !previousInput) {
       return false;

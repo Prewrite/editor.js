@@ -88,7 +88,6 @@ export default class CaretAPI extends Module {
    * @returns {boolean}
    */
   private setToNextBlock = (position: string = this.Editor.Caret.positions.DEFAULT, offset = 0): boolean => {
-
     if (!this.Editor.BlockManager.nextBlock) {
       return false;
     }
@@ -112,7 +111,6 @@ export default class CaretAPI extends Module {
     position: string = this.Editor.Caret.positions.DEFAULT,
     offset = 0
   ): boolean => {
-    console.log('called set to block')
     if (!this.Editor.BlockManager.blocks[index]) {
       return false;
     }
