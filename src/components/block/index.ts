@@ -173,7 +173,7 @@ export default class Block {
    *
    * @type {number}
    */
-  private readonly modificationDebounceTimer = 450;
+  private readonly modificationDebounceTimer = 200;
 
   /**
    * Is fired when DOM mutation has been happened
@@ -183,6 +183,7 @@ export default class Block {
     /**
      * Drop cache
      */
+    console.log('-------->CLEARED CACHE (didMutated)<--------')
     this.cachedInputs = [];
 
     /**
@@ -245,8 +246,6 @@ export default class Block {
    * @returns {HTMLElement[]}
    */
   public get inputs(): HTMLElement[] {
-    console.log('====> getting inputs', this)
-    console.log('=====> actual inputs', $.findAllInputs(this.holder));
     /**
      * Return from cache if existed
      */
@@ -255,7 +254,6 @@ export default class Block {
     }
 
     const inputs = $.findAllInputs(this.holder);
-    console.log('====> REACHED BEYOND', this)
     /**
      * If inputs amount was changed we need to check if input index is bigger then inputs array length
      */
@@ -652,6 +650,8 @@ export default class Block {
      * Observe DOM mutations to update Block inputs
      */
     console.log('??????? overving this = ', this.holder.firstElementChild)
+    console.log('setup observer for ', this.holder)
+    this.mutationObserver.disconnect();
     this.mutationObserver.observe(
       this.holder.firstElementChild,
       {
@@ -673,7 +673,8 @@ export default class Block {
    * Is fired when Block will be unselected
    */
   public willUnselect(): void {
-    this.mutationObserver.disconnect();
+    console.log('killed observer for ', this.holder)
+
     this.removeInputEvents();
   }
 
@@ -701,6 +702,7 @@ export default class Block {
     /**
      * Drop cache
      */
+    console.log('-------->CLEARED CACHE (handleFocus)<--------')
     this.cachedInputs = [];
 
     /**
