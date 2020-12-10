@@ -173,7 +173,7 @@ export default class Block {
    *
    * @type {number}
    */
-  private readonly modificationDebounceTimer = 450;
+  private readonly modificationDebounceTimer = 200;
 
   /**
    * Is fired when DOM mutation has been happened
@@ -182,6 +182,7 @@ export default class Block {
     /**
      * Drop cache
      */
+    console.log('-------->CLEARED CACHE (didMutated)<--------')
     this.cachedInputs = [];
 
     /**
@@ -646,6 +647,7 @@ export default class Block {
     /**
      * Observe DOM mutations to update Block inputs
      */
+    this.mutationObserver.disconnect();
     this.mutationObserver.observe(
       this.holder.firstElementChild,
       {
@@ -667,7 +669,8 @@ export default class Block {
    * Is fired when Block will be unselected
    */
   public willUnselect(): void {
-    this.mutationObserver.disconnect();
+    console.log('killed observer for ', this.holder)
+
     this.removeInputEvents();
   }
 

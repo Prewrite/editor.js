@@ -284,11 +284,8 @@ export default class SelectionUtils {
    * @returns {DOMRect} of range
    */
   public static setCursor(element: HTMLElement, offset = 0): DOMRect {
-    console.log('set cursor', element)
-
     const range = document.createRange();
     const selection = window.getSelection();
-    console.log('selection = ', selection);
 
     /** if found deepest node is native input */
     if ($.isNativeInput(element)) {
